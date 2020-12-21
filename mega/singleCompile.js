@@ -96,6 +96,9 @@ function singleCompile(
         react: 'React',
         'react-dom': 'ReactDom',
         '@lugia/lugiax': 'lugiax',
+        '@lugia/theme-config': 'lugiatheme',
+        '@lugia/theme-core': 'lugiadthemecore',
+        '@lugia/dict': 'lugiadict',
         'styled-components': 'styled',
         '@lugia/theme-hoc-devtools': 'LugiaThemeDevTools'
       }
@@ -188,35 +191,6 @@ process
     send({ error: `onUncaughtException: ${error.message}` });
   });
 
-// process.stdout.on('data', chunk => {
-//   const stdout = filterTermColor(chunk.toString());
-//   send({
-//     stdout
-//   });
-// });
-
-// process.stderr.on('data', chunk => {
-//   const stderr = filterTermColor(chunk.toString());
-//   send({
-//     stderr
-//   });
-// });
-
-// process.stdin.on('data', chunk => {
-//   const stdin = filterTermColor(chunk.toString());
-//   send({
-//     stdin
-//   });
-// });
-
 function send(msg) {
   process.send({ SINGLE_COMPILED: true, ...msg });
 }
-
-// function filterTermColor(data) {
-//   return data
-//     .replace(/\u001b\[\d;?\d{2,3}m|\u001b\[0m/g, '') // eslint-disable-line
-//     .replace(/\u001b\[\d[A-Z]\u001b\[\d[A-Z]\u001b\[\d{1,2}m/g, '') // eslint-disable-line
-//     .replace(/\u001b\[\d{2,3}m/g, '') // eslint-disable-line
-//     .replace(/\u001b\[\d[A-Za-z]/g, ''); // eslint-disable-line
-// }

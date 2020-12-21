@@ -1,0 +1,43 @@
+import React from 'react';
+import { createRoute } from '@lugia/lugiax-router';
+import Header from '../components/header';
+import MenuList from '../components/menulist';
+import '../../App.css';
+import styled from 'styled-components';
+import router from '../../router';
+import { topNav } from '../../config/router/nav.config.json';
+
+const Container = styled.div`
+  margin: 0 auto;
+  background: #f5f5f9;
+  ${() => (topNav ? '' : 'display: flex')}
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex: 1;
+  background: #f5f5f9;
+  flex-direction: column;
+  ${() => (topNav ? '' : 'overflow-y: auto; padding-left: 228px')};
+`;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex: 1;
+  min-height: calc(100vh - 60px);
+  color: #333;
+`;
+
+export default () => {
+  return (
+    <Container>
+      <MenuList />
+      <ContentContainer>
+        <Header />
+        <Content>{createRoute(router)}</Content>
+      </ContentContainer>
+    </Container>
+  );
+};
